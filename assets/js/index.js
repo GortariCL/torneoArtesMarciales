@@ -47,7 +47,7 @@ const reloadTable = () => {
     participantesTemplate.innerHTML = "";
     participantes.forEach((p, i) => {
         participantesTemplate.innerHTML+= `
-        <div class="px-3 pb-2 participante" data-figther="${p.getNombre}">
+        <div class="px-3 pb-2 participante" data-fighter="${p.getNombre}">
             <div class="card">
                 <img src="${p.getImg}" class="card-img-top"/>
                 <div class="card-body">
@@ -55,10 +55,29 @@ const reloadTable = () => {
                     <hr class="w-50 mx-auto">
                     <h6 class="card-text">Raza: ${p.getRaza}</h6>
                     <h6 class="card-text">Poder de pelea: <span class="text-danger"> ${p.getPoder}</span></h6>
-                    <button class="btn btn-outline-warning" onclick="activarHabilidad('${i}]')"> Habilidad Especial </button>
+                    <button class="btn btn-outline-warning" onclick="activarHabilidad('${i}')"> Habilidad Especial </button>
                 </div>
             </div>
         </div>
     `;
     });
 };
+
+window.activarHabilidad = (i) => {
+    const participante = participantes[i];
+    if(participante.getRaza == "Saiyajin"){
+        participante.transformacion();
+    }else if(participante.getRaza == "Humano"){
+        participante.coraje();
+    }
+    reloadTable();
+};
+
+let btnMasFuerte = document.getElementById("btnMasFuerte")
+btnMasFuerte.addEventListener("click", () => {
+    const masFuerte = participantes.sort((a,b) => b.getPoder - a.getPoder)[0];
+    const nombre = masFuerte.getNombre;
+
+    const dataFighter = document.querySelector(`[data-fighter='${nombre}'] div`);
+    dataFighter.style.boxShadow = "0px 0px 5px 1px yellow";
+});

@@ -6,8 +6,8 @@ class Saiyajin extends Personaje{
     }
 
     transformacion(){
-        let poder = this.getPoder();
-        this.setPoder(parseInt(poder * 1.8));
+        let poder = this.getPoder;
+        this._setPoder(parseInt(poder * 1.8));
     }
 }
 
@@ -17,8 +17,8 @@ class Humano extends Personaje{
     }
 
     coraje(){
-        let poder = this.getPoder();
-        this.setPoder(parseInt(poder * 1.2));
+        let poder = this.getPoder;
+        this._setPoder(parseInt(poder * 1.2));
     }
 }
 
